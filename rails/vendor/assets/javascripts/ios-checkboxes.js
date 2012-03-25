@@ -71,7 +71,7 @@
       if (this.isDisabled()) {
         return;
       }
-      x = event.pageX || event.originalEvent.changedTouches[0].pageX;
+      x = event.originalEvent.changedTouches ? event.originalEvent.changedTouches[0].pageX : event.pageX;
       iOSCheckbox.currentlyClicking = this.handle;
       iOSCheckbox.dragStartPosition = x;
       return iOSCheckbox.handleLeftOffset = parseInt(this.handle.css('left'), 10) || 0;
@@ -207,7 +207,7 @@
         return;
       }
       event.preventDefault();
-      x = event.pageX || event.originalEvent.changedTouches[0].pageX;
+      x = event.originalEvent.changedTouches ? event.originalEvent.changedTouches[0].pageX : event.pageX;
       if (!iOSCheckbox.dragging && (Math.abs(iOSCheckbox.dragStartPosition - x) > this.dragThreshold)) {
         iOSCheckbox.dragging = true;
       }
@@ -219,7 +219,7 @@
         return;
       }
       event.preventDefault();
-      x = event.pageX || event.originalEvent.changedTouches[0].pageX;
+      x = event.originalEvent.changedTouches ? event.originalEvent.changedTouches[0].pageX : event.pageX;
       this.onDragEnd(event, x);
       return false;
     };
